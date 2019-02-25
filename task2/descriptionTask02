@@ -1,0 +1,15 @@
+lab02: Problem2
+
+- created object files
+	gcc -c prog1.c prog2.c prog3.c prog4.c
+
+- made srchive of resulting object files 
+	ar -rs libmyfunctions.a *.o
+
+- compile driver program by giving address of header file
+	gcc -c driver.c -I.
+
+- link driver program by mentioning library and path of library
+	gcc driver.o -o myexe -lmyfunctions -L.
+
+	//Now you can execute it by ./myexe; 
