@@ -1,0 +1,22 @@
+- created object files
+	gcc -c -fPIC prog1.c prog2.c prog3.c prog4.c
+
+	//used PIC(position independent compilation) so that addrresses can be change at load time.
+
+- made shared file of resulting object files 
+	gcc -shared *.o -o libmyfunctions.so
+
+- compile driver program by giving address of header file
+	gcc -c driver.c -I.
+
+- link driver program by mentioning library and path of library
+	gcc driver.o -o myexe -lmyfunctions -L.
+
+	as it is dynamic linking, gcc will find library to link at run time, you have to specify path of library otheriwise it will search in standard location /usr/lib
+	to do this, update LD_LIBRARY_PATH variable with library path using export
+
+	$ export LD_LIBRARY_PATH=LD_LIBRARY_PATH:.
+now execute as ./myexe
+
+
+i have comapred the sizes of statically and dynamically linked exe files, statically linked files has littel bigger size because all the code is copied before loading.
